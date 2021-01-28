@@ -21,10 +21,6 @@
         position: absolute;
         top: 10%;
         left: 10%;
-        z-index: 2;
-    }
-    .game {
-        z-index: 1;
     }
     h1 {
         font-size: 100px;
@@ -62,80 +58,24 @@
     }
     .next, .skills {
         margin-bottom: 50px;
-        width: 18vw;
+        width: 300px;
         float: left;
-    }
-    #container {
-        visibility: hidden;
-        background-color: white;
-        border: 2px solid black;
-        border-radius: 3px;
-        height: 600px;
-        width: 600px;
-    }
-    .blokjes {
-        height: 10px;
-        width: 10px;
-        border: 1px solid lightblue;
-        float: left;
-    }
-    .show {
-        cursor: pointer;
-    }
-    .game {
-        position: absolute;
-        top: 7.5%;
-        right: 10%;
-    }
-    #title {
-        display: table-cell;
-        font-size: 50px;
-        color: black;
-    }
-    #start {
-        background-color: white;
-        margin: 10px 0px 10px 25px;
-        height: 45px;
-        width: 125px;
-        font-size: 25px;
-        border-radius: 10px;
-        border: 1px solid white;
-        color: white;
-        background-color: #FF6663;
-    }
-    #start:hover {
-        transition: 0.2s;
-        cursor: pointer;
-        border: 1px solid #FF6663;
-        color: #FF6663;
-        background-color: white;
-    }
-    #start:focus {
-        outline: 0!important;
-    }
-    #title, #start {
-        visibility: hidden;
-    }
-    .header {
-        display: flex;
-        flex-direction: row;
     }
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 900px) {
-        .show, .skills, .next {
+        .skills, .next {
             visibility: hidden;
         }
         .links {
             flex-direction: column;
         }
         main {
-        top: 5%;
-        left: 5%;
+            width: 90vw;
+            top: 5%;
+            left: 5%;
         }
         main h1 {
             font-size: 75px;
-            height: 100%;
-            width: 90vw;
         }
     }
 </style>
@@ -150,7 +90,6 @@
             <a href="https://www.instagram.com/jari_valentine/" target="_blank"><img src="images/instagram.svg" alt="Instagram"></a>
             <a href="https://twitter.com/jari_valentine" target="_blank"><img src="images/twitter.svg" alt="Twitter"></a>
             <a href="mailto:contact@jarivalentine.me" target="_blank"><img src="images/email.svg" alt="Email"></a>
-            <div class="show"><img onclick="btnShow()" src="images/present.svg" alt="Present"></div>
         </div>
         <div class="skills">
             <p>Skills</p>
@@ -168,127 +107,5 @@
             </ul>
         </div>
     </main>
-    <div class="game">
-        <div class="header">
-            <h1 id="title">Game Of Life</h1>
-            <button id="start" onclick="btnStart()">Start</button>
-        </div>
-        <div id="container"></div>
-    </div>
-<script>
-    var heighty = 50;
-    var widthx = 50;
-    var container = document.getElementById("container");
-    var btn = document.getElementById("start");
-    var arrayData = [];
-    var arrayNeigboursX = [-1,-1,-1,0,0,+1,+1,+1];
-    var arrayNeigboursY = [-1,0,+1,-1,+1,-1,0,+1];
-    var interval;
-    var started = false;
-
-    for (var x=0; x<widthx; x++) {
-        var arrayx = [];
-        for (var y=0; y<heighty; y++) {
-            var blokje = document.createElement('div');
-            blokje.addEventListener("mousedown", vakjeClick);
-            blokje.setAttribute("data-x", x.toString());
-            blokje.setAttribute("data-y", y.toString());
-            blokje.classList.add('blokjes');
-            container.append(blokje);
-            data = {
-                xPos: x,
-                yPos: y,
-                div: blokje,
-                alive: false,
-                tempStatus: false
-            }
-            arrayx.push(data);
-        }
-        arrayData.push(arrayx); 
-    }
-
-    function btnShow() {
-        var start = document.getElementById("start");
-        var title = document.getElementById("title");
-        container.style.visibility = "visible";
-        start.style.visibility = "visible";
-        title.style.visibility = "visible";
-    }
-
-    function vakjeClick() {
-        var x = this.getAttribute("data-x");
-        var y = this.getAttribute("data-y");
-        console.log(arrayData[x][y]);
-        if (this.style.backgroundColor == 'black') {
-            this.style.backgroundColor = 'white';
-            arrayData[x][y].alive = false;
-            arrayData[x][y].tempStatus = false;
-        } else {
-            this.style.backgroundColor = 'black';
-            arrayData[x][y].alive = true;
-            arrayData[x][y].tempStatus = true;
-        }
-    }
-
-    function btnStep() {
-        for (var x=0; x<widthx; x++) {
-        for (var y=0; y<heighty; y++) {
-                if (arrayData[x][y].alive == false) {
-                    var aliveCount = 0;
-                    for (var i=0; i<8; i++) {
-                        try {
-                            var nx = x+arrayNeigboursX[i];
-                            var ny = y+arrayNeigboursY[i];
-                            if (arrayData[nx][ny].alive == true) aliveCount++;
-                        } catch (TypeError) {}
-                    }
-                    if (aliveCount==3) arrayData[x][y].tempStatus = true;
-                }
-                if (arrayData[x][y].alive == true) {
-                    var aliveCount = 0;
-                    for (var i=0; i<8; i++) {
-                        try {
-                            var nx = x+arrayNeigboursX[i];
-                            var ny = y+arrayNeigboursY[i];
-                            if (arrayData[nx][ny].alive == true) aliveCount++;
-                        } catch (TypeError) {}
-                    }
-                    if (aliveCount==3 || aliveCount==2) arrayData[x][y].tempStatus = true;
-                    else arrayData[x][y].tempStatus = false;
-                    if (aliveCount>=4) arrayData[x][y].tempStatus = false;
-                }
-            }
-        }
-        checkTemp()
-    }
-
-    function btnStart() {
-        if (!started) {
-            interval = setInterval(btnStep, 100)
-            started = true;
-            btn.innerHTML = "Stop";
-        }
-        else {
-            clearInterval(interval);
-            started = false;
-            btn.innerHTML = "Start";
-        }
-    }
-
-    function checkTemp() {
-        for (var x=0; x<widthx; x++) {
-        for (var y=0; y<heighty; y++) {
-                if (arrayData[x][y].tempStatus == true) {
-                    arrayData[x][y].alive = true;
-                    arrayData[x][y].div.style.backgroundColor = 'black';
-                }
-                else {
-                    arrayData[x][y].alive = false;
-                    arrayData[x][y].div.style.backgroundColor = 'white';
-                }
-            }
-        }
-    }
-</script>
 </body>
 </html>
