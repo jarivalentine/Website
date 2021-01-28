@@ -16,37 +16,84 @@
     }
     body {
         height: 100vh;
+        /* background: linear-gradient(to right, white 25%, lightblue); */
     }
     main {
         position: absolute;
-        height: 70vh;
-        width: 70vw;
+        height: 50vh;
+        width: 50vw;
         top: 10%;
         left: 10%;
     }
     h1 {
         font-size: 100px;
+        user-select: text;
     }
-    p {
+    p, li {
         font-size: 25px;
     }
-    .links a img{
-        height: 75px;
+    li {
+        margin-left: 35px;
+    }
+    p a, li a {
+        color: #FF6663;
+    }
+    p a:hover, li a:hover {
+        border-bottom: 1px solid #FF6663;
+    }
+    .links {
         margin: 50px 50px 50px 0px;
+        display: flex;
+        flex-direction: row;
+    }
+    .links a {
+        margin-right: 50px;
+        height: 75px;
+        width: 75px;
+    }
+    .links img {
+        height: 100%;
+    }
+    .links img:hover {
+        transition: 0.1s;
+        transform: scale(1.1);
+    }
+    .next, .skills {
+        margin-bottom: 50px;
+        width: 18vw;
+        float: left;
     }
 </style>
 </head>
 <body>
     <main>
         <h1>Jari<br>Valentine</h1>
-        <p>I study computer science at GO-Atheneum Oudenaarde.</p>
+        <p>I study Computer Science at <a href="https://go-atheneumoudenaarde.be/" target="_blank">GO-Atheneum Oudenaarde <img height="18px" src="images/link.svg"></a>.</p>
         <div class="links">
             <a href="https://github.com/jarivalentine" target="_blank"><img src="images/github.svg" alt="GitHub"></a>
-            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/discord.svg" alt="GitHub"></a>
-            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/instagram.svg" alt="GitHub"></a>
-            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/twitter.svg" alt="GitHub"></a>
-            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/email.svg" alt="GitHub"></a>
+            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/discord.svg" alt="Discord"></a>
+            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/instagram.svg" alt="Instagram"></a>
+            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/twitter.svg" alt="Twitter"></a>
+            <a href="https://github.com/jarivalentine" target="_blank"><img src="images/email.svg" alt="Email"></a>
+        </div>
+        <div class="skills">
+            <p>Skills</p>
+            <ul>
+                <li>HTML, CSS & JS</li>
+                <li>PHP</li>
+                <li>C#</li>
+            </ul>
+        </div>
+        <div class="next">
+            <p>Next for me</p>
+            <ul>
+                <li>JS Library <a href="https://reactjs.org/" target="_blank">React <img height="18px" src="images/link.svg"></a></li>
+                <li>Bachelor at <a href="https://www.howest.be/nl/opleidingen/bachelor/toegepaste-informatica" target="_blank">Howest <img height="18px" src="images/link.svg"></a></li>
+            </ul>
         </div>
     </main>
+    <div class="game">
+
+    </div>
 </body>
 </html>
