@@ -26,16 +26,13 @@
         font-size: 100px;
         user-select: text;
     }
-    p, li {
+    p {
         font-size: 25px;
     }
-    li {
-        margin-left: 35px;
-    }
-    p a, li a {
+    p a {
         color: #FF6663;
     }
-    p a:hover, li a:hover {
+    p a:hover {
         border-bottom: 1px solid #FF6663;
     }
     .links {
@@ -43,7 +40,7 @@
         display: flex;
         flex-direction: row;
     }
-    .links a, .start {
+    .links a {
         margin-right: 50px;
         margin-bottom: 10px;
         height: 75px;
@@ -56,19 +53,7 @@
         transition: 0.1s;
         transform: scale(1.1);
     }
-    .next, .skills {
-        margin-bottom: 50px;
-        width: 300px;
-        float: left;
-    }
-    /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 900px) {
-        .skills, .next {
-            visibility: hidden;
-        }
-        .links {
-            flex-direction: column;
-        }
         main {
             width: 90vw;
             top: 5%;
@@ -76,6 +61,9 @@
         }
         main h1 {
             font-size: 75px;
+        }
+        .links {
+            flex-direction: column;
         }
     }
 </style>
@@ -91,20 +79,6 @@
             <a href="https://twitter.com/jari_valentine" target="_blank"><img src="images/twitter.svg" alt="Twitter"></a>
             <a href="mailto:contact@jarivalentine.me" target="_blank"><img src="images/email.svg" alt="Email"></a>
         </div>
-        <div class="skills">
-            <p>Skills</p>
-            <ul>
-                <li>HTML, CSS & JS</li>
-                <li>PHP</li>
-                <li>C#</li>
-            </ul>
-        </div>
-        <div class="next">
-            <p>Next for me</p>
-            <ul>
-                <li>JS Library <a href="https://reactjs.org/" target="_blank">React <img height="18px" src="images/link.svg"></a></li>
-                <li>Bachelor at <a href="https://www.howest.be/nl/opleidingen/bachelor/toegepaste-informatica" target="_blank">Howest <img height="18px" src="images/link.svg"></a></li>
-            </ul>
         </div>
     </main>
 </body>
